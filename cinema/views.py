@@ -25,6 +25,7 @@ from cinema.serializers import (
     MovieImageSerializer,
 )
 
+
 class GenreViewSet(
     mixins.CreateModelMixin,
     mixins.ListModelMixin,
@@ -34,6 +35,7 @@ class GenreViewSet(
     serializer_class = GenreSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
+
 
 class ActorViewSet(
     mixins.CreateModelMixin,
@@ -45,6 +47,7 @@ class ActorViewSet(
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
 
+
 class CinemaHallViewSet(
     mixins.CreateModelMixin,
     mixins.ListModelMixin,
@@ -54,6 +57,7 @@ class CinemaHallViewSet(
     serializer_class = CinemaHallSerializer
     authentication_classes = (TokenAuthentication,)
     permission_classes = (IsAdminOrIfAuthenticatedReadOnly,)
+
 
 class MovieViewSet(
     mixins.ListModelMixin,
@@ -118,6 +122,7 @@ class MovieViewSet(
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 class MovieSessionViewSet(viewsets.ModelViewSet):
     queryset = (
         MovieSession.objects.all()
@@ -157,9 +162,11 @@ class MovieSessionViewSet(viewsets.ModelViewSet):
 
         return MovieSessionSerializer
 
+
 class OrderPagination(PageNumberPagination):
     page_size = 10
     max_page_size = 100
+
 
 class OrderViewSet(
     mixins.ListModelMixin,
